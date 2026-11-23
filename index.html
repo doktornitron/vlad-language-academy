@@ -1,10 +1,10 @@
 <!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Влад: игровая академия языков</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f5f2e9;color:#253d37;font:17px/1.48 "Segoe UI",Arial,sans-serif}header{background:#203c35;color:#fff;padding:15px max(5vw,20px);display:flex;align-items:center;gap:12px;font-weight:750}header b{background:#eac67b;color:#233c33;border-radius:9px;padding:4px 10px;font-size:22px}header small{margin-left:auto;color:#dcdfd1}main{max-width:1140px;margin:auto;padding:42px 24px}h1,h2,p{margin:0}h1{font-size:clamp(36px,5vw,65px);line-height:1.04;letter-spacing:-.055em}h2{font-size:30px;letter-spacing:-.045em}main>p{margin:12px 0 26px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}article,.panel{background:#fffdf6;border:1px solid #c7cbbd;border-radius:19px;overflow:hidden;box-shadow:0 4px 0 #d9dbce}.art{position:relative;background:#b9d9c3}.art canvas{display:block;width:100%;height:auto}.tag{position:absolute;top:15px;left:15px;border-radius:6px;background:#fffdf0;padding:4px 10px;font-size:13px;font-weight:750}.copy,.panel{padding:24px}.copy p{min-height:50px;margin:6px 0 18px;color:#53645d}button{border:1px solid #a4afa1;background:#fffdf6;color:#243e34;border-radius:9px;padding:12px 18px;min-height:47px;font:700 16px inherit;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer}button:focus-visible{outline:3px solid #ae6500;outline-offset:2px}button:hover:enabled{filter:brightness(.94)}button:disabled{background:#e8e8de;color:#59645c;cursor:default}.primary{background:#285743;color:white;border-color:#285743}.copy button{width:100%}.meta{font-size:14px;color:#53645d;margin:8px 0}.panel{max-width:780px;margin:14px auto}.panel p{margin:12px 0}blockquote{margin:16px 0;background:#e4efdf;border-left:5px solid #517c55;padding:14px;font-size:23px;font-weight:650}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}.note{background:#fff0ca;padding:12px;border-radius:8px}textarea{width:100%;font:inherit;padding:9px}footer{margin-top:22px;font-size:14px;color:#55665c}@media(max-width:700px){main{padding:24px 15px}.grid{grid-template-columns:1fr}.copy p{min-height:0}.copy,.panel{padding:18px}header small{font-size:12px}}
-</style><header><b aria-hidden="true">◆</b> Игровая академия языков <small>Игрок · Влад</small></header><main id="app"></main><script>
+.fruitArt{min-height:128px;display:grid;place-items:center;background:#f4e3bf;font-size:54px;padding:24px 0 6px}</style><header><b aria-hidden="true">◆</b> Игровая академия языков <small>Игрок · Влад</small></header><main id="app"></main><script>
 const app=document.querySelector('#app'),titles=['Портал 327','Собери команду'],langs=['Румынский','Английский'],key='vlad.academy.v1';
 let db=[null,null],id=0,warning='';
-try{let saved=JSON.parse(localStorage.getItem(key));if(Array.isArray(saved)&&saved.length===2)db=saved}catch{}
+try{let saved=JSON.parse(localStorage.getItem(key));if(Array.isArray(saved)&&saved.length>=2)db=saved}catch{}
 function save(){try{localStorage.setItem(key,JSON.stringify(db))}catch{warning='Браузер не разрешил сохранить прогресс.'}}
 function fresh(){return {step:0,wrong:0,hint:false,ru:false,results:[],color:'',done:false}}
 function art(c,i){
@@ -21,7 +21,7 @@ function art(c,i){
  cube(3,1,0,.8,.8,1,wood);cube(2,2,0,.85,.85,.8,wood)
 }
 function button(label,fn,primary=false){let b=document.createElement('button');b.textContent=label;if(primary)b.className='primary';b.onclick=fn;return b}
-function home(){app.innerHTML='<h1>Карта миссий</h1><p>Влад, выбери мир и начни приключение. Взрослый читает реплики вслух.</p><div class="grid"></div>';titles.forEach((t,i)=>{let s=db[i],locked=i===1&&!db[0]?.done&&!s;let el=document.createElement('article');el.innerHTML='<div class="art"><canvas width="640" height="234"></canvas><span class="tag">'+langs[i]+'</span></div><div class="copy"><div class="meta">3 эпизода · 5–8 минут</div><h2>'+t+'</h2><p>'+['Познакомься с Раду и добудь блок для моста.','Найди напарника и выбери цвет командного флага.'][i]+'</p></div>';art(el.querySelector('canvas'),i);let b=button(locked?'После «Портала 327»':s?.done?'Посмотреть результат':s?'Продолжить · эпизод '+(s.step+1):'Начать миссию →',()=>{id=i;if(!db[i])db[i]=fresh();save();play()},true);b.disabled=locked;el.lastChild.append(b);app.querySelector('.grid').append(el)});app.insertAdjacentHTML('beforeend','<footer>Прогресс каждого языка сохраняется в этом браузере. '+warning+'</footer>')}
+function home(){app.innerHTML='<h1>Карта миссий</h1><p>Влад, выбери мир и начни приключение. Взрослый читает реплики вслух.</p><div class="grid"></div>';[0,...school.map((_,j)=>j+2),1].forEach(i=>{let t=titles[i],lesson=school[i-2],s=db[i],locked=i===1&&!db[0]?.done&&!s;let el=document.createElement('article');el.innerHTML='<div class="art"><canvas width="640" height="234"></canvas><span class="tag">'+langs[i]+'</span></div><div class="copy"><div class="meta">3 эпизода · 5–8 минут</div><h2>'+t+'</h2><p>'+(lesson?lesson.goal:['Познакомься с Раду и добудь блок для моста.','Найди напарника и выбери цвет командного флага.'][i])+'</p></div>';if(lesson){let picture=document.createElement('div');picture.className='fruitArt';picture.textContent=lesson.icon;el.querySelector('canvas').replaceWith(picture)}else art(el.querySelector('canvas'),i);let b=button(locked?'После «Портала 327»':s?.done?'Посмотреть результат':s?'Продолжить · эпизод '+(s.step+1):'Начать миссию →',()=>{id=i;if(!db[i])db[i]=fresh();save();play()},true);b.disabled=locked;el.lastChild.append(b);app.querySelector('.grid').append(el)});app.insertAdjacentHTML('beforeend','<footer>Прогресс каждого языка сохраняется в этом браузере. '+warning+'</footer>')}
 const episodes=[
 [['Раду машет тебе у ворот из зелёных блоков.','Salut! Eu sunt Radu. Cum te cheamă?','Что Влад ответит Раду?',['Eu sunt Vlad.','Un bloc, te rog.'],0,'Назови своё имя.','Раду узнал твоё имя и открыл ворота.'],
 ['У моста не хватает блока. Раду держит ящик с деталями.','Ce îți trebuie?','Как попросить один блок?',['Salut!','Un bloc, te rog.'],1,'Тебе нужен блок. Добавь «пожалуйста».','Раду передал блок. Мост достроен!'],
@@ -29,18 +29,60 @@ const episodes=[
 [['У арены 418 тебя встречает новый напарник.','Hi! I’m Max. What’s your name?','Как представиться Максу?',['I’m Vlad.','Blue, please.'],0,'Макс хочет узнать твоё имя.','Макс записал твоё имя в список команды.'],
 ['Макс разворачивает два командных флага.','Red or blue?','Какой флаг возьмёт Влад?',['Red, please.','Blue, please.'],-1,'Red — красный, blue — синий.',''],
 ['У флага ждёт новая напарница Миа.','Hi! I’m Mia.','Как Влад сам представится Мие?',null,0,'Назови своё имя.','Миа присоединилась. Команда готова к игре!']]];
+// Each row holds one short exchange, its choices, feedback and observed skill.
+const school=[];
+function lesson(title,icon,goal,rows){
+ school.push({goal,icon,names:rows.map(row=>row[7]),model:rows[2][8]});
+ titles.push(title);langs.push('Румынский');episodes.push(rows);
+}
+function basket(title,icon,fruit,plural,other,rus,many){
+ const one=fruit[0].toUpperCase()+fruit.slice(1), several='Niște '+plural;
+ lesson(title,icon,'Назови один плод и несколько. В конце собери заказ для Аны.',[
+ ['У лавки 327 Раду показывает один плод: '+rus+'.','Ce este în coș?','Какую этикетку прикрепить к корзине?',[one,'Niște '+plural],0,'В корзине один плод.','Этикетка готова: '+fruit+'.','выбор названия одного плода'],
+ ['Подъехал грузовик. На заказе нарисованы '+many+'.','Ce punem în camion?','Выбери заказ для водителя.',[other,several],1,'Нужно несколько плодов одного вида.','В кузове теперь '+plural+'!','выбор названия нескольких плодов'],
+ ['Ана открыла вторую лавку. Ей нужны '+many+'.','Ce îți trebuie?','Как попросить у Аны эти плоды по-румынски?',null,0,'Начни с «Niște» и вспомни название во множественном числе.','Ана собрала заказ и отправила грузовик в школу.','устная просьба о плодах',several+', te rog.']]);
+}
+basket('Вишнёвая корзина','🍒','o cireașă','cireșe','O cireașă','вишня','три вишни');
+basket('Яблочный рейс','🍎','un măr','mere','Un măr','яблоко','три яблока');
+basket('Груши для команды','🍐','o pară','pere','O pară','груша','три груши');
+basket('Персиковая лавка','🍑','o piersică','piersici','O piersică','персик','три персика');
+basket('Абрикосовый сад','🌳','o caisă','caise','O caisă','абрикос','три абрикоса');
+basket('Сливовый груз','🧺','o prună','prune','O prună','слива','три сливы');
+basket('Клубничная остановка','🍓','o căpșună','căpșuni','O căpșună','клубника','три ягоды клубники');
+basket('Виноградная станция','🍇','un strugure','struguri','Un strugure','гроздь винограда','три грозди винограда');
+function paint(title,icon,goal,a,b){
+ lesson(title,icon,goal,[
+ [a[0],a[1],'Как подписать рисунок?',[a[2],b[2]],0,a[3],'Первая подпись на месте.',a[2]],
+ [b[0],b[1],'Какая подпись подойдёт?',[a[2],b[2]],1,b[3],'Вторая карточка готова.',b[2]],
+ ['Ана пришла на выставку. '+b[0],b[1],'Как ответить Ане целым предложением?',null,0,b[3],'Ана нашла нужную карточку по твоему описанию.','устное описание',b[2]]]);
+}
+paint('Красная мастерская','🍎 🍅','Опиши красное яблоко и красный помидор.',
+ ['На рисунке красное яблоко.','Cum este mărul?','Mărul este roșu.','Начни с «Mărul».'],
+ ['На рисунке красный помидор.','Cum este roșia?','Roșia este roșie.','Начни с «Roșia».']);
+paint('Жёлтая мастерская','✏️ 🍐','Опиши жёлтый карандаш и жёлтую грушу.',
+ ['На рисунке жёлтый карандаш.','Cum este creionul?','Creionul este galben.','Начни с «Creionul».'],
+ ['На рисунке жёлтая груша.','Cum este para?','Para este galbenă.','Начни с «Para».']);
+paint('Секрет абрикоса','🌳 🧺','Расскажи, какой абрикос на вид и на вкус.',
+ ['Повар нарисовал круглый абрикос.','Ce formă are caisa?','Caisa este rotundă.','Вспомни слово «круглая».'],
+ ['Повар дал попробовать сладкий абрикос.','Ce gust are caisa?','Caisa este dulce.','Вспомни слово «сладкий».']);
+paint('Краски сада','🟢 🟣','Назови цвета зелёного яблока и фиолетовой сливы.',
+ ['На рисунке зелёное яблоко.','Ce culoare are mărul?','Mărul este verde.','Начни с «Mărul».'],
+ ['На рисунке фиолетовая слива.','Ce culoare are pruna?','Pruna este mov.','Начни с «Pruna».']);
+paint('Цветные карандаши','🔵 🟠','Назови цвета синего и оранжевого карандашей.',
+ ['На рисунке синий карандаш.','Ce culoare are creionul?','Creionul este albastru.','Синий — albastru.'],
+ ['На рисунке оранжевый карандаш.','Ce culoare are creionul?','Creionul este portocaliu.','Оранжевый — portocaliu.']);
 function play(){let s=db[id],n=s.step,e=episodes[id][n];app.innerHTML='<button id="map">← Карта миссий</button><section class="panel"></section>';document.querySelector('#map').onclick=home;let p=app.querySelector('.panel');
  function line(t,tag='p',cls=''){let a=document.createElement(tag);a.textContent=t;a.className=cls;p.append(a);return a}
  line(langs[id]+' · '+(s.done?'Миссия пройдена':'Эпизод '+(n+1)+' из 3'),'div','meta');line(titles[id],'h2');
  function actions(){let a=document.createElement('div');a.className='actions';p.append(a);return a}
  function update(){save();play()}
- if(s.done){line(e[6]);let names=id?['представление Максу','выбор цвета','устное знакомство с Мией']:['представление Раду','просьба о блоке','устное знакомство с Аной'];let list=(v)=>names.filter((_,j)=>s.results[j]===v).join(', ')||'нет';line('Строка для взрослого');let t=line(langs[id]+' · '+titles[id]+' · Самостоятельно ('+'первые два хода — выбор ответа): '+list('сам')+'. С помощью: '+list('помощь')+'. После повторной попытки: '+list('повтор')+'. Повторить: '+(names.find((_,j)=>s.results[j]!=='сам')||'знакомство с новым напарником')+'.','textarea');t.readOnly=true;t.rows=4;let a=actions();a.append(button('Выделить строку',()=>{t.focus();t.select()}),button('К миссиям →',home,true));return}
- if(s.results[n]){line(n===1&&id?'Команда подняла '+s.color+' флаг.':e[6]);actions().append(button(n===2?'Завершить миссию':'Следующий эпизод →',()=>{if(n===2)s.done=true;else s.step++;s.wrong=0;s.ru=false;s.hint=false;update()},true));return}
- line(n===2&&id?'У ворот с флагом команды ('+s.color+') ждёт Миа.':e[0]);line(e[1],'blockquote').lang=id?'en':'ro';line(e[2],'h3');
- const model=n===2?(id?'Hi! I’m Vlad.':'Salut! Eu sunt Vlad.'):e[3][Math.max(e[4],0)];
- if(s.wrong>=2)line('Образец: '+model+' Теперь обратись так же к '+(id?'Лео.':'Дану.'),'p','note');else if(s.ru||s.hint||s.wrong)line((s.ru?'Ты понял вопрос! Попробуй сказать это '+(id?'по-английски. ':'по-румынски. '):s.wrong?'Попробуй ещё раз. ':'')+e[5],'p','note');
+ if(s.done){line(e[6]);let names=school[id-2]?.names || (id===1?['представление Максу','выбор цвета','устное знакомство с Мией']:['представление Раду','просьба о блоке','устное знакомство с Аной']);let list=(v)=>names.filter((_,j)=>s.results[j]===v).join(', ')||'нет';line('Строка для взрослого');let t=line(langs[id]+' · '+titles[id]+' · Самостоятельно ('+'первые два хода — выбор ответа): '+list('сам')+'. С помощью: '+list('помощь')+'. После повторной попытки: '+list('повтор')+'. Повторить: '+(names.find((_,j)=>s.results[j]!=='сам')||names[2])+'.','textarea');t.readOnly=true;t.rows=4;let a=actions();a.append(button('Выделить строку',()=>{t.focus();t.select()}),button('К миссиям →',home,true));return}
+ if(s.results[n]){line(n===1&&id===1?'Команда подняла '+s.color+' флаг.':e[6]);actions().append(button(n===2?'Завершить миссию':'Следующий эпизод →',()=>{if(n===2)s.done=true;else s.step++;s.wrong=0;s.ru=false;s.hint=false;update()},true));return}
+ line(n===2&&id===1?'У ворот с флагом команды ('+s.color+') ждёт Миа.':e[0]);line(e[1],'blockquote').lang=id===1?'en':'ro';line(e[2],'h3');
+ const model=n===2?(school[id-2]?.model || (id===1?'Hi! I’m Vlad.':'Salut! Eu sunt Vlad.')):e[3][Math.max(e[4],0)];
+ if(s.wrong>=2)line('Образец: '+model+' Теперь обратись так же к '+(id===1?'Лео.':'Дану.'),'p','note');else if(s.ru||s.hint||s.wrong)line((s.ru?'Ты понял вопрос! Попробуй сказать это '+(id===1?'по-английски. ':'по-румынски. '):s.wrong?'Попробуй ещё раз. ':'')+e[5],'p','note');
  function finish(help){s.results[n]=help||s.hint||s.ru||s.wrong>=2?'помощь':s.wrong?'повтор':'сам';update()}
- let a=actions();if(n===2||s.wrong>=2){a.append(button('Сказал сам',()=>finish(false),true),button('С подсказкой',()=>finish(true)))}else e[3].forEach((t,j)=>a.append(button(t,()=>{if(e[4]>=0&&j!==e[4]){s.wrong++;update()}else{if(id&&n===1)s.color=j?'синий':'красный';finish(false)}})));
+ let a=actions();if(n===2||s.wrong>=2){a.append(button('Сказал сам',()=>finish(false),true),button('С подсказкой',()=>finish(true)))}else e[3].forEach((t,j)=>a.append(button(t,()=>{if(e[4]>=0&&j!==e[4]){s.wrong++;update()}else{if(id===1&&n===1)s.color=j?'синий':'красный';finish(false)}})));
  let b=actions();if(!s.hint&&s.wrong<2)b.append(button('Подсказка',()=>{s.hint=true;update()}));if(!s.ru&&s.wrong<2)b.append(button('Верно ответил по-русски',()=>{s.ru=true;update()}));if(n===2&&s.wrong<2)b.append(button('Попробовать ещё раз',()=>{s.wrong++;update()}));if(warning)line(warning)
 }home();
 </script></html>
