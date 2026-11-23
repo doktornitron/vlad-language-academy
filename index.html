@@ -78,8 +78,496 @@ paint('Цветные карандаши','🔵 🟠','Назови цвета �
  ['На рисунке оранжевый карандаш.','Ce culoare are creionul?','Creionul este portocaliu.','Оранжевый — portocaliu.']);
 
 const pics=["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTI4IDU5UTUyIDM2IDUzIDE1UTU4IDM4IDY5IDYzIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ODY2MzEiIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI4IiBjeT0iNjUiIHI9IjE4IiBmaWxsPSIjZGYzNjQ4IiBzdHJva2U9IiM0NTJjMzciIHN0cm9rZS13aWR0aD0iMiIvPjxlbGxpcHNlIGN4PSIyMi4yNDAwMDAwMDAwMDAwMDIiIGN5PSI1Ny44IiByeD0iNC41IiByeT0iMi42OTk5OTk5OTk5OTk5OTk3IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNzUiLz48Y2lyY2xlIGN4PSI2OCIgY3k9IjY3IiByPSIxOSIgZmlsbD0iI2I4MjAzOSIgc3Ryb2tlPSIjNDUyYzM3IiBzdHJva2Utd2lkdGg9IjIiLz48ZWxsaXBzZSBjeD0iNjEuOTIiIGN5PSI1OS40IiByeD0iNC43NSIgcnk9IjIuODUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43NSIvPjxwYXRoIGQ9Ik00OCAyNFE0OSA2IDcyIDlRNjggMjQgNDggMjRaIiBmaWxsPSIjNDM4YjM5Ii8+PHBhdGggZD0iTTQ2IDI5UTQ3IDE4IDQyIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MTQ3MmIiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTQ4IDI4QzE3IDEyIDggNDMgMjAgNjdRMzAgOTAgNDggODNRNjggOTEgNzkgNjRDOTIgMzEgNzIgMTUgNDggMjhaIiBmaWxsPSIjZTU0MjM4IiBzdHJva2U9IiM1YzQwMmIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik00OCAyNFE0OSA2IDcyIDlRNjggMjQgNDggMjRaIiBmaWxsPSIjNDM4YjM5Ii8+PHBhdGggZD0iTTQ2IDI5UTQ3IDE4IDQyIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MTQ3MmIiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0yOSA0NXEyLTcgOS05IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIG9wYWNpdHk9Ii43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTQ3IDIyUTM2IDIxIDM0IDQwUTMyIDQ5IDIzIDU2UTggODMgNDAgODdRNzkgOTQgNzggNjdRNzcgNTcgNjYgNDZRNjAgNDAgNTkgMzBRNTYgMjAgNDcgMjJaIiBmaWxsPSIjZWRjODNhIiBzdHJva2U9IiM1YzQwMmIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik00OCAyNFE0OSA2IDcyIDlRNjggMjQgNDggMjRaIiBmaWxsPSIjNDM4YjM5Ii8+PHBhdGggZD0iTTQ2IDI5UTQ3IDE4IDQyIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MTQ3MmIiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0yOSA0NXEyLTcgOS05IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIG9wYWNpdHk9Ii43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTQ3IDI4QzE4IDE1IDcgNDMgMTkgNjNRMzAgODAgNDggODdRNzQgNzYgODIgNTVRODggMjEgNjEgMjNaIiBmaWxsPSIjZjk5YTY1IiBzdHJva2U9IiM1YzQwMmIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik00OCAyNFE0OSA2IDcyIDlRNjggMjQgNDggMjRaIiBmaWxsPSIjNDM4YjM5Ii8+PHBhdGggZD0iTTQ2IDI5UTQ3IDE4IDQyIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MTQ3MmIiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0yOSA0NXEyLTcgOS05IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIG9wYWNpdHk9Ii43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik01MyAzMVE2OCA1MyA0OSA4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZGE3MjUxIiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTQ2IDI0QzE5IDE4IDkgNDggMTkgNjhRMjkgODggNTUgODRRODAgODIgODIgNTdRODUgMjYgNTggMjRaIiBmaWxsPSIjZmZhZTM2IiBzdHJva2U9IiM1YzQwMmIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik00OCAyNFE0OSA2IDcyIDlRNjggMjQgNDggMjRaIiBmaWxsPSIjNDM4YjM5Ii8+PHBhdGggZD0iTTQ2IDI5UTQ3IDE4IDQyIDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MTQ3MmIiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0yOSA0NXEyLTcgOS05IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIG9wYWNpdHk9Ii43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTQ2IDI0UTE0IDE4IDE3IDU0UTE5IDgyIDQ1IDg3UTY5IDg2IDc4IDU3UTg5IDIyIDU4IDIzWiIgZmlsbD0iIzk3NTNiNSIgc3Ryb2tlPSIjNWM0MDJiIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNNDggMjRRNDkgNiA3MiA5UTY4IDI0IDQ4IDI0WiIgZmlsbD0iIzQzOGIzOSIvPjxwYXRoIGQ9Ik00NiAyOVE0NyAxOCA0MiAxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjE0NzJiIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNMjkgNDVxMi03IDktOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBvcGFjaXR5PSIuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PHBhdGggZD0iTTE0IDQwUTE0IDIwIDQ4IDI1UTgyIDE4IDgyIDQwUTc3IDY3IDQ4IDg4UTIyIDczIDE0IDQwWiIgZmlsbD0iI2VmNDE0OSIgc3Ryb2tlPSIjOTYzODNiIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNMjIgMjlMNDAgMjVMMzMgMTRMNDkgMjJMNTcgOUw1OCAyM0w3NSAyMEw2MSAzMUw2NSAzOUw0OCAzMkwzNyA0MEwzOCAzMVoiIGZpbGw9IiM0NDg1NDAiLz48ZWxsaXBzZSBjeD0iMzAiIGN5PSI0NiIgcng9IjIiIHJ5PSIzIiBmaWxsPSIjZmZlOTk5Ii8+PGVsbGlwc2UgY3g9IjUwIiBjeT0iNDUiIHJ4PSIyIiByeT0iMyIgZmlsbD0iI2ZmZTk5OSIvPjxlbGxpcHNlIGN4PSI2NyIgY3k9IjQ0IiByeD0iMiIgcnk9IjMiIGZpbGw9IiNmZmU5OTkiLz48ZWxsaXBzZSBjeD0iMzkiIGN5PSI2MCIgcng9IjIiIHJ5PSIzIiBmaWxsPSIjZmZlOTk5Ii8+PGVsbGlwc2UgY3g9IjU2IiBjeT0iNjEiIHJ4PSIyIiByeT0iMyIgZmlsbD0iI2ZmZTk5OSIvPjxlbGxpcHNlIGN4PSI0OCIgY3k9IjczIiByeD0iMiIgcnk9IjMiIGZpbGw9IiNmZmU5OTkiLz48L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PGNpcmNsZSBjeD0iMjYiIGN5PSIzNyIgcj0iMTMiIGZpbGw9IiM4NzU0YWMiIHN0cm9rZT0iIzQ1MmMzNyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGVsbGlwc2UgY3g9IjIxLjg0IiBjeT0iMzEuOCIgcng9IjMuMjUiIHJ5PSIxLjk1IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNzUiLz48Y2lyY2xlIGN4PSI0NyIgY3k9IjM2IiByPSIxMyIgZmlsbD0iIzg3NTRhYyIgc3Ryb2tlPSIjNDUyYzM3IiBzdHJva2Utd2lkdGg9IjIiLz48ZWxsaXBzZSBjeD0iNDIuODQiIGN5PSIzMC44IiByeD0iMy4yNSIgcnk9IjEuOTUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43NSIvPjxjaXJjbGUgY3g9IjY2IiBjeT0iMzgiIHI9IjEzIiBmaWxsPSIjODc1NGFjIiBzdHJva2U9IiM0NTJjMzciIHN0cm9rZS13aWR0aD0iMiIvPjxlbGxpcHNlIGN4PSI2MS44NCIgY3k9IjMyLjgiIHJ4PSIzLjI1IiByeT0iMS45NSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjc1Ii8+PGNpcmNsZSBjeD0iMzYiIGN5PSI1NSIgcj0iMTMiIGZpbGw9IiM4NzU0YWMiIHN0cm9rZT0iIzQ1MmMzNyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGVsbGlwc2UgY3g9IjMxLjg0IiBjeT0iNDkuOCIgcng9IjMuMjUiIHJ5PSIxLjk1IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNzUiLz48Y2lyY2xlIGN4PSI1NyIgY3k9IjU2IiByPSIxMyIgZmlsbD0iIzg3NTRhYyIgc3Ryb2tlPSIjNDUyYzM3IiBzdHJva2Utd2lkdGg9IjIiLz48ZWxsaXBzZSBjeD0iNTIuODQiIGN5PSI1MC44IiByeD0iMy4yNSIgcnk9IjEuOTUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43NSIvPjxjaXJjbGUgY3g9IjQ2IiBjeT0iNzMiIHI9IjEzIiBmaWxsPSIjODc1NGFjIiBzdHJva2U9IiM0NTJjMzciIHN0cm9rZS13aWR0aD0iMiIvPjxlbGxpcHNlIGN4PSI0MS44NCIgY3k9IjY3LjgiIHJ4PSIzLjI1IiByeT0iMS45NSIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjc1Ii8+PHBhdGggZD0iTTQ4IDI0UTQ5IDYgNzIgOVE2OCAyNCA0OCAyNFoiIGZpbGw9IiM0MzhiMzkiLz48cGF0aCBkPSJNNDYgMjlRNDcgMTggNDIgMTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzYxNDcyYiIgc3Ryb2tlLXdpZHRoPSI1Ii8+PC9zdmc+"];
+const classMissions=[
+ {
+  "title": "Ворота великанов",
+  "icon": "🏰",
+  "action": "Установить табличку",
+  "rows": [
+   [
+    "Перед тобой большой замок.",
+    "Cum este castelul?",
+    "mare",
+    "mic",
+    "🏰",
+    "🏰",
+    "Mare — большой или большая."
+   ],
+   [
+    "У ворот маленькая башня.",
+    "Cum este ea?",
+    "mică",
+    "mare",
+    "🗼",
+    "🗼",
+    "Для маленькой башни выбери mică."
+   ]
+  ],
+  "final": [
+   "За воротами два больших замка.",
+   "Cum sunt castelele?",
+   "Опиши замки одним словом.",
+   "Mari.",
+   "Несколько больших предметов — mari."
+  ]
+ },
+ {
+  "title": "Мост добрых дел",
+  "icon": "🤝",
+  "action": "Пригласить в команду",
+  "rows": [
+   [
+    "Раду помог другу подняться.",
+    "Cum este Radu?",
+    "bun",
+    "mic",
+    "🤝",
+    "📏",
+    "Bun — добрый."
+   ],
+   [
+    "Ана поделилась карандашами.",
+    "Cum este Ana?",
+    "bună",
+    "mică",
+    "✏️",
+    "📏",
+    "Для Аны скажи bună."
+   ]
+  ],
+  "final": [
+   "Новая напарница помогла малышу перейти мост.",
+   "Cum este ea?",
+   "Скажи, какая напарница.",
+   "Ea este bună.",
+   "Вспомни, как ты описал Ану."
+  ]
+ },
+ {
+  "title": "Код головоломки",
+  "icon": "🧩",
+  "action": "Открыть замок",
+  "rows": [
+   [
+    "Дан разгадал сложный код.",
+    "Cum este Dan?",
+    "deștept",
+    "bucuros",
+    "🧩",
+    "😊",
+    "Deștept — умный."
+   ],
+   [
+    "Мара нашла решение загадки.",
+    "Cum este Mara?",
+    "deșteaptă",
+    "bucuroasă",
+    "🧩",
+    "😊",
+    "Об умной девочке говорят deșteaptă."
+   ]
+  ],
+  "final": [
+   "Ана догадалась, как открыть сундук.",
+   "Cum este Ana?",
+   "Похвали Ану за находчивость.",
+   "Ana este deșteaptă.",
+   "Вспомни слово для умной девочки."
+  ]
+ },
+ {
+  "title": "Сила роботов",
+  "icon": "🤖",
+  "action": "Запустить робота",
+  "rows": [
+   [
+    "Робот поднимает огромный куб.",
+    "Cum este robotul?",
+    "puternic",
+    "slab",
+    "💪",
+    "🪫",
+    "Puternic — сильный, slab — слабый."
+   ],
+   [
+    "У машины разрядился аккумулятор. Мощность мала.",
+    "Cum este mașina?",
+    "slabă",
+    "puternică",
+    "🪫",
+    "💪",
+    "Slabă — слабая, puternică — сильная."
+   ]
+  ],
+  "final": [
+   "После зарядки машина легко поднимает ворота.",
+   "Cum este mașina acum?",
+   "Скажи, что машина сильная.",
+   "Mașina este puternică.",
+   "Для машины нужна форма женского рода."
+  ]
+ },
+ {
+  "title": "Праздник команды",
+  "icon": "🎉",
+  "action": "Вручить медаль",
+  "rows": [
+   [
+    "Дан радуется победе.",
+    "Cum este Dan?",
+    "bucuros",
+    "deștept",
+    "😊",
+    "🧩",
+    "Bucuros — радостный."
+   ],
+   [
+    "Ана улыбается своей медали.",
+    "Cum este Ana?",
+    "bucuroasă",
+    "deșteaptă",
+    "😊",
+    "🧩",
+    "О радостной девочке скажи bucuroasă."
+   ]
+  ],
+  "final": [
+   "Мара радуется встрече с командой.",
+   "Cum este Mara?",
+   "Опиши настроение Мары.",
+   "Mara este bucuroasă.",
+   "Вспомни, что ты сказал об Ане."
+  ]
+ },
+ {
+  "title": "Пропуск в класс",
+  "icon": "🎒",
+  "action": "Выдать пропуск",
+  "rows": [
+   [
+    "Ученик пришёл за пропуском.",
+    "Cine este el?",
+    "un elev",
+    "o elevă",
+    "👦",
+    "👧",
+    "Elev — ученик."
+   ],
+   [
+    "За ним пришла ученица.",
+    "Cine este ea?",
+    "o elevă",
+    "un elev",
+    "👧",
+    "👦",
+    "Elevă — ученица."
+   ]
+  ],
+  "final": [
+   "Ана в школьной форме получает учебники.",
+   "Cine este Ana?",
+   "Представь её как ученицу.",
+   "Ana este elevă.",
+   "Начни с «Ana este…»."
+  ]
+ },
+ {
+  "title": "Команда одноклассников",
+  "icon": "🏫",
+  "action": "Соединить команду",
+  "rows": [
+   [
+    "Ана встречает одноклассника.",
+    "Ea întâlnește…",
+    "un coleg",
+    "o colegă",
+    "👦",
+    "👧",
+    "Coleg — одноклассник."
+   ],
+   [
+    "У ворот Ана встречает одноклассницу.",
+    "Ea întâlnește…",
+    "o colegă",
+    "un coleg",
+    "👧",
+    "👦",
+    "Colegă — одноклассница."
+   ]
+  ],
+  "final": [
+   "Вы с другом учитесь в одном классе.",
+   "Cine sunteți voi?",
+   "Скажи: «Мы одноклассники».",
+   "Noi suntem colegi.",
+   "Начни с «Noi suntem…»."
+  ]
+ },
+ {
+  "title": "Склад игрушек",
+  "icon": "⚽",
+  "action": "Отправить ящик",
+  "rows": [
+   [
+    "В ящике ⚽ ⚽ ⚽.",
+    "Ce este aici?",
+    "niște mingi",
+    "niște șoricei",
+    "⚽",
+    "🐭",
+    "Mingi — мячи."
+   ],
+   [
+    "На полке 🐭 🐭 🐭.",
+    "Ce este acolo?",
+    "niște șoricei",
+    "niște mingi",
+    "🐭",
+    "⚽",
+    "Șoricei — мышата."
+   ]
+  ],
+  "final": [
+   "На столе четыре игрушки: ⚽ 🧸 🚂 🪀.",
+   "Câte jucării sunt?",
+   "Назови количество игрушек.",
+   "Sunt patru jucării.",
+   "Patru — четыре. Одна игрушка — o jucărie."
+  ]
+ },
+ {
+  "title": "Заячья поляна",
+  "icon": "🐇",
+  "action": "Открыть калитку",
+  "rows": [
+   [
+    "На этой поляне 🐇 🐇 🐇 🐇 🐇.",
+    "Câți iepurași sunt aici?",
+    "cinci",
+    "patru",
+    "🐇",
+    "🐇",
+    "Cinci — пять."
+   ],
+   [
+    "Зайчата здесь, у твоих ног.",
+    "Unde sunt iepurașii?",
+    "aici",
+    "acolo",
+    "👇",
+    "👉",
+    "Aici — здесь, acolo — там."
+   ]
+  ],
+  "final": [
+   "Пять зайчат перебрались вон туда, за реку.",
+   "Câți iepurași sunt acolo?",
+   "Скажи, сколько там зайчат.",
+   "Acolo sunt cinci iepurași.",
+   "Начни с «Acolo sunt…»."
+  ]
+ },
+ {
+  "title": "Счётная станция",
+  "icon": "🔢",
+  "action": "Передать сигнал",
+  "rows": [
+   [
+    "Один ребёнок раскладывает кубики.",
+    "Cine numără?",
+    "un copil",
+    "doi copii",
+    "🧒",
+    "👫",
+    "Copil — ребёнок, copii — дети."
+   ],
+   [
+    "Ты считаешь один.",
+    "Ce faci?",
+    "Eu număr.",
+    "Noi numărăm.",
+    "🧒",
+    "👫",
+    "Eu — я, noi — мы."
+   ]
+  ],
+  "final": [
+   "Теперь вы с другом считаете вместе.",
+   "Ce faceți?",
+   "Ответь за двоих: «Мы считаем».",
+   "Noi numărăm.",
+   "Начни с «Noi…»."
+  ]
+ },
+ {
+  "title": "Клуб первоклассников",
+  "icon": "🎂",
+  "action": "Получить значок",
+  "rows": [
+   [
+    "Ты учишься считать.",
+    "Ce faci?",
+    "Eu învăț.",
+    "Ei învață.",
+    "🧒",
+    "👫",
+    "Eu învăț — я учусь."
+   ],
+   [
+    "Дети учатся считать вместе.",
+    "Ce fac copiii?",
+    "Copiii învață să numere.",
+    "Eu învăț.",
+    "👫",
+    "🧒",
+    "Ei învață — они учатся."
+   ]
+  ],
+  "final": [
+   "Для значка назови свой возраст. Можно назвать возраст героя.",
+   "Câți ani ai?",
+   "Ответь о себе или герое. Подойдёт любой выбранный возраст.",
+   "Eu am opt ani.",
+   "Un an — один год, șapte ani — семь лет, opt ani — восемь."
+  ]
+ },
+ {
+  "title": "Библиотека и клиника",
+  "icon": "📚",
+  "action": "Открыть кабинет",
+  "rows": [
+   [
+    "В этой истории мама Аны выдаёт книги.",
+    "Cine este mama ta, Ana?",
+    "Mama mea este bibliotecară.",
+    "Mama mea este medic.",
+    "📚",
+    "🩺",
+    "Bibliotecară — библиотекарь."
+   ],
+   [
+    "Папа Аны лечит пациентов.",
+    "Cine este tatăl tău, Ana?",
+    "Tatăl meu este medic.",
+    "Tatăl meu este șofer.",
+    "🩺",
+    "🚌",
+    "Medic — врач, șofer — водитель."
+   ]
+  ],
+  "final": [
+   "Представься Аной. Расскажи, кем работает мама.",
+   "Cine este mama ta?",
+   "Ответь от лица Аны.",
+   "Mama mea este bibliotecară.",
+   "Начни с «Mama mea este…»."
+  ]
+ },
+ {
+  "title": "Автобус профессий",
+  "icon": "🚌",
+  "action": "Остановить автобус",
+  "rows": [
+   [
+    "Первый пассажир строит дома.",
+    "Cine lucrează aici?",
+    "un constructor",
+    "un învățător",
+    "🧱",
+    "🏫",
+    "Constructor — строитель."
+   ],
+   [
+    "Второй пассажир учит первоклассников.",
+    "Cine este el?",
+    "un învățător",
+    "un șofer",
+    "🏫",
+    "🚌",
+    "Învățător — учитель начальных классов."
+   ]
+  ],
+  "final": [
+   "У руля автобуса папа героя.",
+   "Cine este tatăl tău?",
+   "Скажи от лица героя, что папа — водитель.",
+   "Tatăl meu este șofer.",
+   "Водитель — șofer."
+  ]
+ },
+ {
+  "title": "Кухня на ярмарке",
+  "icon": "🍲",
+  "action": "Открыть кухню",
+  "rows": [
+   [
+    "Повар готовит суп.",
+    "Cine este el?",
+    "bucătar",
+    "constructor",
+    "🍲",
+    "🧱",
+    "Bucătar — повар."
+   ],
+   [
+    "Женщина-повар печёт хлеб.",
+    "Cine este ea?",
+    "bucătăreasă",
+    "bibliotecară",
+    "🥖",
+    "📚",
+    "Bucătăreasă — женщина-повар."
+   ]
+  ],
+  "final": [
+   "На кухне мама героя готовит обед.",
+   "Cine este mama ta?",
+   "Ответь от лица героя.",
+   "Mama mea este bucătăreasă.",
+   "Начни с «Mama mea este…»."
+  ]
+ },
+ {
+  "title": "Магазин у школы",
+  "icon": "🏪",
+  "action": "Открыть магазин",
+  "rows": [
+   [
+    "Продавец раскладывает товар.",
+    "Cine este el?",
+    "vânzător",
+    "bucătar",
+    "🏪",
+    "🍲",
+    "Vânzător — продавец."
+   ],
+   [
+    "Продавщица выдаёт покупку.",
+    "Cine este ea?",
+    "vânzătoare",
+    "bucătăreasă",
+    "🏪",
+    "🍲",
+    "Vânzătoare — продавщица."
+   ]
+  ],
+  "final": [
+   "Ана показывает работающую продавщицу.",
+   "Ce face ea?",
+   "Скажи: «Она работает».",
+   "Ea lucrează.",
+   "El lucrează — он работает. Замени el на ea."
+  ]
+ }
+];
+const classStart=titles.length;
+for(const m of classMissions){
+ const practice=m.rows.map(([scene,question,answer,other,icon,otherIcon,hint])=>[scene,question,'Выбери ответ для команды.',[answer,other],0,hint,'Задание выполнено!',answer]);
+ const [scene,question,instruction,model,hint]=m.final;
+ lesson(m.title,m.icon,instruction,[...practice,[scene,question,instruction,null,0,hint,'Команда добралась до цели.','устный ответ: '+question,model]]);
+}
 const icons=['🧱','🚩',...school.map(x=>x.icon)];
-const groups=[{name:'Миры приключений',ids:[0,1]},{name:'Фруктовая доставка',ids:[2,3,4,5,6,7,8,9]},{name:'Мастерская красок',ids:[10,11,12,13,14]}];
+const groups=[{name:'Новые школьные миссии',ids:classMissions.map((_,i)=>classStart+i)},{name:'Миры приключений',ids:[0,1]},{name:'Фруктовая доставка',ids:[2,3,4,5,6,7,8,9]},{name:'Мастерская красок',ids:[10,11,12,13,14]}];
 const colors=['#e34843','#f3c733','#70b44b','#834bb5','#3987cf','#fa8b32'];
 const fruits=['cireașă','măr','pară','piersică','caisă','prună','căpșună','strugure'];
 const definite=['cireașa','mărul','para','piersica','caisa','pruna','căpșuna','strugurele'];
@@ -89,19 +577,19 @@ const palette=[['🍎','🍅'],['✏️','🍐'],['⚪','🍯'],['🟢','🟣'],
 const {createApp}=Vue;
 function heroFor(i,n){
  const worlds=['портала','арены','вишнёвого сада','яблоневого сада','грушевой рощи','персиковой лавки','абрикосового сада','сливового сада','клубничной поляны','виноградника','красок','солнца','сладостей','зелёной рощи','палитры'];
- return {name:['Разведчик','Механик','Капитан'][n]+' '+worlds[i],icon:[['🦊','🤖','🦁'],['🐺','🦾','🐯'],['🐿️','🦝','🐲']][i%3][n]}
+ return {name:['Разведчик','Механик','Капитан'][n]+' '+(worlds[i]||('· '+titles[i])),icon:[['🦊','🤖','🦁'],['🐺','🦾','🐯'],['🐿️','🦝','🐲']][i%3][n]}
 }
 createApp({
  data(){return {player:"",draft:"",players:[],ledger:{},db,playing:false,id:0,icons,pics,groups,titles,langs,warning:'',earned:[],order:0}},
  created(){try{this.players=JSON.parse(localStorage.getItem(key+".players")||"[]");this.draft=localStorage.getItem(key+".active")||"";if(this.draft)this.join()}catch{this.warning="Не удалось прочитать профиль."}},
  computed:{
- destination(){return this.fruit?(this.s.step===0?"Положить в корзину":"Загрузить в фургон"):this.id===0?(this.s.step===0?"Открыть портал":"Построить мост"):this.id===1?(this.s.step===0?"Принять напарника":"Поднять флаг"):"Повесить рисунок"},hero(){return heroFor(this.id,this.s.step)},collection(){return Object.keys(this.ledger).map(k=>heroFor(...k.split("-").map(Number)))},s(){return this.db[this.id]},e(){return episodes[this.id][this.s.step].map(val=>Array.isArray(val)?val.map(text=>this.personal(text)):typeof val==="string"?this.personal(val):val)},fruit(){return this.id>=2&&this.id<=9},f(){return this.id-2},won(){return !!this.s.results[this.s.step]},stars(){return Object.keys(this.ledger).length},
+ destination(){if(this.id>=classStart)return classMissions[this.id-classStart].action;return this.fruit?(this.s.step===0?"Положить в корзину":"Загрузить в фургон"):this.id===0?(this.s.step===0?"Открыть портал":"Построить мост"):this.id===1?(this.s.step===0?"Принять напарника":"Поднять флаг"):"Повесить рисунок"},hero(){return heroFor(this.id,this.s.step)},collection(){return Object.keys(this.ledger).map(k=>heroFor(...k.split("-").map(Number)))},s(){return this.db[this.id]},e(){return episodes[this.id][this.s.step].map(val=>Array.isArray(val)?val.map(text=>this.personal(text)):typeof val==="string"?this.personal(val):val)},fruit(){return this.id>=2&&this.id<=9},f(){return this.id-2},won(){return !!this.s.results[this.s.step]},stars(){return Object.keys(this.ledger).length},
  scene(){if(this.fruit)return ['Фургон у сада. Положи нужный плод в корзину.','У погрузчика два ящика. Водитель ждёт несколько плодов.','Ана принимает груз. Попроси у неё несколько таких плодов.'][this.s.step];return this.e[0]},
  prompt(){if(this.fruit)return ['Pune '+definite[this.f]+' în coș!','Încarcă niște '+plurals[this.f]+'!','Ce îți trebuie?'][this.s.step];return this.e[1]},
  instruction(){if(this.s.carry)return this.destination+' — нажми на цель.';if(this.won)return 'Ход выполнен.';return this.fruit&&this.s.step<2?'Коснись нужного груза.':this.e[2]},
  objects(){if(this.s.step===2)return [];let options;
  if(this.fruit){const n=this.s.step,other=(this.f+1)%8;options=[{label:n?'Ящик × 3':fruitRu[this.f],img:pics[this.f],amount:n?3:1,ok:true},{label:n?'Ящик × 1':fruitRu[other],img:pics[n?this.f:other],amount:1,ok:false}]}
- else options=this.e[3].map((label,j)=>({label,ok:this.e[4]<0||this.e[4]===j,index:j,icon:this.id===0?(this.s.step===1?['👋','🧱']:['👋','🧱'])[j]:this.id===1?this.s.step===1?['🟥','🟦'][j]:'🤝':palette[this.id-10][j]}));
+ else options=this.e[3].map((label,j)=>({label,ok:this.e[4]<0||this.e[4]===j,index:j,icon:this.id===0?(this.s.step===1?['👋','🧱']:['👋','🧱'])[j]:this.id===1?this.s.step===1?['🟥','🟦'][j]:'🤝':this.id>=classStart?classMissions[this.id-classStart].rows[this.s.step][4+j]:palette[this.id-10][j]}));
  return (this.id+this.s.step+this.order)%2?options.reverse():options},
  model(){return this.fruit&&this.s.step<2?(this.s.step?'Niște '+plurals[this.f]:episodes[this.id][0][3][0]):this.s.step===2?(school[this.id-2]?.model||(this.id===1?'Hi! I’m '+this.player+'.':'Salut! Eu sunt '+this.player+'.')):this.e[3][Math.max(0,this.e[4])]},
  hint(){return this.fruit&&this.s.step<2?(this.s.step?'Niște — несколько. Найди ящик с тремя плодами.':fruits[this.f]+' — '+fruitRu[this.f]+'.'):this.e[5]},
